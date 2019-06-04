@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         /** 渡されたテーブルを一括削除する */
         $this->truncateTables([
-           'users'
+            'users',
+            'profiles',
         ]);
 
         /** Seeder実行 */
         $this->call(UsersTableSeeder::class);
+        $this->call(ProfilesTableSeeder::class);
     }
 
     /**
