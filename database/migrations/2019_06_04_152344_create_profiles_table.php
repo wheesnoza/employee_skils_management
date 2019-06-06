@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration
             $table->integer('birth_year');
             $table->integer('birth_month');
             $table->integer('birth_day');
-            $table->string('identification_img');
+            $table->string('avatar')->nullable();
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
