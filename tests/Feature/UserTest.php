@@ -95,18 +95,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * 認証していない場合
-     * ログインページにリダイレクト
-     *
-     * @test
-     */
-    public function unauthenticated_user_cannot_view_home()
-    {
-        $this->get('home')
-            ->assertRedirect('login');
-    }
-
-    /**
      * 新規登録
      * メールは必須
      *
