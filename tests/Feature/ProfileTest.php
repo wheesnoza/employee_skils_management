@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Profile;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -13,9 +14,9 @@ class ProfileTest extends TestCase
      *
      * @test
      */
-    public function unauthenticated_user_cannot_view_new_profile_page()
+    public function unauthenticated_user_cannot_view_edit_profile_page()
     {
-        $this->get('profile')
+        $this->get('profile/edit')
             ->assertRedirect('login');
     }
 
@@ -24,12 +25,18 @@ class ProfileTest extends TestCase
      *
      * @test
      */
-    public function already_has_user_profile_cannot_view_new_profile_page()
+    public function authenticated_user_can_view_edit_profile_page()
     {
         $user = factory(User::class)->create();
-        factory(Profile::class)->create();
+        factory(Profile::class)->create([
+            'user_id' => $user->id
+        ]);
+        $this->actingAs($user);
 
-        $this->get('profile')
-            ->assertRedirect('/');
+        $this->assertTrue(Auth::check());
+
+        $this->get('profile/edit')
+            ->assertStatus(200)
+            ->assertSee('プロフィール');
     }
 }
