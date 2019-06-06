@@ -30,7 +30,9 @@ class ProfileController extends Controller
             'birth_day' => 'required',
             'avatar' => ['file', 'image', 'max:4000'],
         ]);
+
         $fileHashName = $user->profile->avatar;
+
         if (isset($data['avatar'])) {
             $file = $data['avatar'];
             $fileHashName = $file->hashName();
@@ -39,7 +41,10 @@ class ProfileController extends Controller
             /** 画像リサイズ */
             $image->save(public_path().'/images/'.$fileHashName)
                 ->crop(500, 500)
-                ->save(public_path().'/images/200-'.$fileHashName);
+                ->save(public_path().'/images/'.$fileHashName)
+                ->resize(75, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path().'/images/thumbnail-'.$fileHashName);
         }
 
         $user->profile()->update([
