@@ -3,6 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Profile;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Profile::class, function (Faker $faker) {
@@ -13,6 +14,6 @@ $factory->define(Profile::class, function (Faker $faker) {
         'birth_year' => 1998,
         'birth_month' => 3,
         'birth_day' => 31,
-        'user_id' => $faker->unique()->numberBetween(1, 51),
+        'user_id' => $faker->unique()->numberBetween(1, User::count()),
     ];
 });
