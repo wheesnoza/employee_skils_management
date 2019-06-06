@@ -52,7 +52,7 @@ class UserTest extends TestCase
         $this->post(route('login'), [
             'email' => 'test@test.com',
             'password' => 'test12345678'
-        ])->assertRedirect('home');
+        ])->assertRedirect('/');
 
         $this->assertTrue(Auth::check());
     }
@@ -65,10 +65,12 @@ class UserTest extends TestCase
     public function can_register()
     {
         $this->post(route('register'), [
+            'first_name' => 'test1',
+            'last_name' => 'test2',
             'email' => 'test@test.test',
             'password' => 'test12345678',
             'password_confirmation' => 'test12345678',
-        ])->assertRedirect('home');
+        ])->assertRedirect('/');
 
         $this->assertTrue(Auth::check());
 
@@ -129,6 +131,18 @@ class UserTest extends TestCase
         $this->assertFalse(Auth::check());
 
         $this->assertEquals(0, User::count());
+    }
+
+    /**
+     * ユザー一覧が正常に表示できる
+     *
+     * @test
+     */
+    public function can_view_users_page()
+    {
+        $this->get('users')
+            ->assertStatus(200)
+            ->assertSee('氏名');
     }
 
 }
