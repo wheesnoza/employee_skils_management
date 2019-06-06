@@ -17,10 +17,10 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('address');
-            $table->integer('birth_year');
-            $table->integer('birth_month');
-            $table->integer('birth_day');
+            $table->string('address')->nullable();
+            $table->integer('birth_year')->nullable();
+            $table->integer('birth_month')->nullable();
+            $table->integer('birth_day')->nullable();
             $table->string('avatar')->nullable();
             $table->unsignedInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');

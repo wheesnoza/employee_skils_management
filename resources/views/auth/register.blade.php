@@ -12,10 +12,22 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">企業番号</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control">
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">姓・名</label>
+                            <div class="col-md-3">
+                                <input id="name" name="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror">
+                                @error('first_name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <input id="name" name="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror">
+                                @error('last_name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
