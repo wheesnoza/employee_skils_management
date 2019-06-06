@@ -69,3 +69,6 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+
+# public/images
+public/images
