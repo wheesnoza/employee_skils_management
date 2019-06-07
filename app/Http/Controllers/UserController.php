@@ -21,6 +21,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        /** 経歴を取得 */
+        $careers = $user->careers->all();
+        return view('users.show', compact('user', 'careers'));
     }
 }

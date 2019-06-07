@@ -29,6 +29,8 @@ class HomeController extends Controller
         $userSkills = $user->skills()->pluck('id')->toArray();
         /** ユーザが持っていないスキルだけを格納 */
         $skills = Skill::all()->whereNotIn('id', $userSkills);
-        return view('home', compact('user', 'skills'));
+        /** 経歴を取得 */
+        $careers = $user->careers->all();
+        return view('home', compact('user', 'skills', 'careers'));
     }
 }
