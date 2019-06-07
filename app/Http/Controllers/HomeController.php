@@ -25,7 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $skills = Skill::all();
+        /** ユーザがすでに持っているスキルを配列で返す */
+        $userSkills = $user->skills()->pluck('id')->toArray();
+        /** ユーザが持っていないスキルだけを格納 */
+        $skills = Skill::all()->whereNotIn('id', $userSkills);
         return view('home', compact('user', 'skills'));
     }
 }
