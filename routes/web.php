@@ -28,3 +28,6 @@ Route::get('/users', 'UserController@index')
 Route::get('/users/{user}', 'UserController@show')
     ->where('user', '[0-9]+')
     ->name('users.show');
+
+Route::post('/skill', 'SkillController@store')
+    ->name('skill.store');

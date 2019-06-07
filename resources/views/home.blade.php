@@ -14,7 +14,9 @@
                     <p>{{ $user->email }}</p>
                 </div>
             </div>
-            <a href="{{ route('profile.edit') }}" class="btn btn-info btn-lg text-white ml-2 mb-3 shadow">スキルを追加する</a>
+            <button type="button" class="btn btn-info btn-lg text-white mb-3 shadow" data-toggle="modal" data-target="#exampleModalCenter">
+                スキルを追加する
+            </button>
             <div class="row">
                 @forelse($user->skills as $skill)
                     <div class="col-md-6">
@@ -57,6 +59,36 @@
                         </div>
                     </li>
                 </ul>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">スキル追加</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{{ route('skill.store') }}">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="skill">スキルを選ぶ</label>
+                        <select class="form-control" id="skill" name="skill">
+                            @foreach($skills as $skill)
+                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="submit" class="btn btn-primary">追加</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
