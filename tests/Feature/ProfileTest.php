@@ -4,11 +4,15 @@ namespace Tests\Feature;
 
 use App\Profile;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
+    /** テストの際にDBをリセット */
+    use RefreshDatabase;
+
     /**
      * 新規登録していないユーザは
      * プロフィール編集ページを見ることができない
