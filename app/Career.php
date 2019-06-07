@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Career extends Model
 {
     protected $fillable = [
+        'experience',
         'start_year',
         'end_year',
         'start_month',

@@ -31,3 +31,9 @@ Route::get('/users/{user}', 'UserController@show')
 
 Route::post('/skill', 'SkillController@store')
     ->name('skill.store');
+
+Route::get('/career/new', 'CareerController@new')
+    ->name('career.new');
+
+Route::post('/career', 'CareerController@store')
+    ->name('career.store');

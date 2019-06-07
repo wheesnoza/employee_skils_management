@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-md-8 text-right">
-            <a href="{{ route('profile.edit') }}" class="btn btn-info btn-lg text-white ml-2 mb-3 shadow">経歴を追加する</a>
+            <a href="{{ route('career.new') }}" class="btn btn-info btn-lg text-white ml-2 mb-3 shadow">経歴を追加する</a>
                 <ul class="timeline">
                     @forelse($careers as $career)
                         <li>
