@@ -34,7 +34,7 @@ class UserTest extends TestCase
 
         $this->assertTrue(Auth::check());
 
-        $this->get('/users/1')
+        $this->get("/users/$seenUser->id")
             ->assertStatus(200)
             ->assertSee('Taro');
     }
