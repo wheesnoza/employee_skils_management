@@ -1,6 +1,6 @@
 <?php
 
-use App\Skills;
+use App\Skill;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
