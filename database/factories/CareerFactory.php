@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Career::class, function (Faker $faker) {
     return [
+        'experience' => $faker->text(13),
         'start_year' => $faker->year(),
         'end_year' => $faker->year(),
         'start_month' => $faker->month(),

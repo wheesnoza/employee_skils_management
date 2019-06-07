@@ -15,6 +15,7 @@ class CreateCareersTable extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('experience');
             $table->integer('start_year');
             $table->integer('end_year');
             $table->integer('start_month');
