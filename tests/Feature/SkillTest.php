@@ -21,22 +21,23 @@ class SkillTest extends TestCase
      */
     public function user_can_add_skill_to_profile()
     {
+        /** スキル */
         DB::table('skills')->insert([
             'name' => 'Java',
             'image' => 'Java.png'
         ]);
 
+        /** ユーザ */
         $user = factory(User::class)->create();
         factory(Profile::class)->create([
             'user_id' => $user->id
         ]);
         $this->actingAs($user);
-
         $this->assertTrue(Auth::check());
 
         $this->from(route('home'))
             ->post(route('skill.store'), [
-                'skill_id' => 1
+                'skill' => 1
             ])
             ->assertRedirect(route('home'));
         $this->assertDatabaseHas('skill_user', [

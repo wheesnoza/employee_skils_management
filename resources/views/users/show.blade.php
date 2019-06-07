@@ -30,23 +30,30 @@
             </div>
             <div class="col-md-8 text-right">
                 <ul class="timeline">
-                    <li>
-                        <div class="timeline-badge info"></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">プロジェクト名</h4>
-                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2018-2019</small></p>
+                    @forelse($careers as $career)
+                        <li>
+                            <div class="timeline-badge info"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="timeline-title">{{ $career->experience }}</h4>
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ "{$career->start_year}年{$career->start_month}月-{$career->end_year}年{$career->end_month}月" }}</small></p>
+                                </div>
+                                <div class="timeline-body mb-3">
+                                    <p>
+                                        {{ $career->details }}
+                                    </p>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-danger">削除</a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary">編集</a>
+                                </div>
                             </div>
-                            <div class="timeline-body mb-3">
-                                <p>
-                                    コンテンツの内容ではなく、純粋にデザインを評価する場合にこれらの文章は役にたちます。
-                                    人間は文章を読んでその意味を理解してしまうと、その他の部分への評価に影響を与えてしまうと言われていることがその理由です。
-                                    では、日本語の場合はどうでしょう。 前述のラテン文字とは違い、日本語の表記体系は非常に複雑です。
-                                    ひらがな・カタカナ・漢字・数字・アルファベットを織り交ぜて記述されるため、Lorem ipsumでは全く代用できません。
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @empty
+                        No careers
+                    @endforelse
                 </ul>
             </div>
         </div>
