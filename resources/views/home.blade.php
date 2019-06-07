@@ -16,38 +16,18 @@
             </div>
             <a href="{{ route('profile.edit') }}" class="btn btn-info btn-lg text-white ml-2 mb-3 shadow">スキルを追加する</a>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card shadow mb-3">
-                        <br><br><br><br><br>
-                        <div class="card-footer text-center">
-                            <h3>Java</h3>
+                @forelse($user->skills as $skill)
+                    <div class="col-md-6">
+                        <div class="card shadow mb-3">
+                            <img src="{{ asset("storage/images/$skill->image")  }}" class="card-img-top" alt="...">
+                            <div class="card-footer text-center">
+                                <h3>{{ $skill->name }}</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card shadow mb-3">
-                        <br><br><br><br><br>
-                        <div class="card-footer text-center">
-                            <h3>Ruby</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card shadow mb-3">
-                        <br><br><br><br><br>
-                        <div class="card-footer text-center">
-                            <h3>Rails</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card shadow mb-3">
-                        <br><br><br><br><br>
-                        <div class="card-footer text-center">
-                            <h3>PHP</h3>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    No skills
+                @endforelse
             </div>
         </div>
         <div class="col-md-8 text-right">
