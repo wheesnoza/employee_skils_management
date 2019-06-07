@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             'profiles',
             'skills',
             'skill_user',
+            'careers',
         ]);
 
         /** Seeder実行 */
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfilesTableSeeder::class);
         $this->call(SkillsTableSeeder::class);
         $this->call(SkillUserTableSeeder::class);
+        $this->call(CareersTableSeeder::class);
     }
 
     /**
