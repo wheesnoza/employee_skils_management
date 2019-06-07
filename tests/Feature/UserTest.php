@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Profile;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -12,6 +13,44 @@ class UserTest extends TestCase
 
     /** テストの際にDBをリセット */
     use RefreshDatabase;
+
+    /**
+     * 他ユザーのプロフィールを正常に表示できる
+     *
+     * @test
+     */
+    public function can_view_another_user_page()
+    {
+        $seenUser = factory(User::class)->create();
+
+        factory(Profile::class)->create([
+            'first_name' => 'Taro',
+            'user_id' => $seenUser->id
+        ]);
+
+        $seeUser = factory(User::class)->create();
+
+        $this->actingAs($seeUser);
+
+        $this->assertTrue(Auth::check());
+
+        $this->get('/users/1')
+            ->assertStatus(200)
+            ->assertSee('Taro');
+    }
+
+    /**
+     * 認証していないユザーは
+     * 他ユーザのプロフィールを
+     * 見ることができない
+     *
+     * @test
+     */
+    public function unauthenticated_user_cannot_view_another_user_page()
+    {
+        $this->get('users/1')
+            ->assertRedirect('login');
+    }
 
     /**
      * ログインページを正常に表示できている
@@ -138,11 +177,19 @@ class UserTest extends TestCase
      *
      * @test
      */
-    public function can_view_users_page()
+    public function can_view_users_list_page()
     {
-        $this->get('users')
+        $user = factory(User::class)->create();
+        factory(Profile::class)->create([
+            'user_id' => $user->id
+        ]);
+
+        $this->actingAs($user);
+
+        $this->assertTrue(Auth::check());
+
+        $this->get(route('users'))
             ->assertStatus(200)
             ->assertSee('氏名');
     }
-
 }
