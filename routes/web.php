@@ -22,9 +22,9 @@ Route::get('/profile/edit', 'ProfileController@edit')
 Route::put('/profile', 'ProfileController@update')
     ->name('profile.update');
 
-Route::get('users', 'UserController@index')
+Route::get('/users', 'UserController@index')
     ->name('users');
 
-Route::get('users/{user}', 'UserController@show')
+Route::get('/users/{user}', 'UserController@show')
     ->where('user', '[0-9]+')
     ->name('users.show');
