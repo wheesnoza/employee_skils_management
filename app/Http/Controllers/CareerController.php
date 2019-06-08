@@ -19,6 +19,10 @@ class CareerController extends Controller
             'start_year' => ['required', 'integer'],
             'end_year' => ['required', 'integer'],
             'details' => []
+        ], [
+            'experience.required' => 'タイトルは必須です',
+            'start_year.required' => 'この項目は必須です',
+            'end_year.required' => 'この項目は必須です',
         ]);
         $user = Auth::user();
         $user->careers()->create([
@@ -43,6 +47,10 @@ class CareerController extends Controller
             'start_year' => ['required', 'integer'],
             'end_year' => ['required', 'integer'],
             'details' => []
+        ], [
+            'experience.required' => 'タイトルは必須です',
+            'start_year.required' => 'この項目は必須です',
+            'end_year.required' => 'この項目は必須です',
         ]);
 
         $career->update($data);
