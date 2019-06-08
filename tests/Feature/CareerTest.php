@@ -37,7 +37,6 @@ class CareerTest extends TestCase
      */
     public function user_can_add_new_career()
     {
-        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         factory(Profile::class)->create([
             'user_id' => $user->id
@@ -55,6 +54,54 @@ class CareerTest extends TestCase
         ])->assertRedirect(route('home'));
 
         $this->equalTo(1, Career::count());
+    }
+
+    /**
+     * 経歴編集ページが正常に表示できる
+     *
+     * @test
+     */
+    public function user_can_view_edit_career_page()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+        $this->assertTrue(Auth::check());
+        $career = factory(Career::class)->create([
+            'user_id' => $user->id,
+        ]);
+        $this->get(route('career.edit', $career))
+            ->assertStatus(200);
+    }
+
+    /**
+     * 経歴編集が正常にできる
+     *
+     * @test
+     */
+    public function user_can_update_career()
+    {
+        $user = factory(User::class)->create();
+        factory(Profile::class)->create([
+            'user_id' => $user->id
+        ]);
+        $this->actingAs($user);
+        $this->assertTrue(Auth::check());
+
+        $career = factory(Career::class)->create([
+            'experience' => '東京大学',
+            'user_id' => $user->id,
+        ]);
+
+        $this->put(route('career.update', $career), [
+            'experience' => '東海大学',
+            'start_year' => 2016,
+            'start_month' => 4,
+            'end_year' => 2020,
+            'end_month' => 3,
+            'details' => '楽しかった',
+        ])->assertRedirect(route('home'));
+
+        $this->assertDatabaseHas('careers', ['experience' => '東海大学']);
     }
 
     /**
@@ -213,7 +260,7 @@ class CareerTest extends TestCase
     }
 
     /**
-     * end_monthは必須
+     * ユーザは経歴を削除することができる
      *
      * @test
      */

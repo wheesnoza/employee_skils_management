@@ -61,7 +61,7 @@
                                     </form>
                                 </div>
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-sm">編集</a>
+                                    <a href="{{ route('career.edit', $career) }}" class="btn btn-primary btn-sm">編集</a>
                                 </div>
                             </div>
                         </li>

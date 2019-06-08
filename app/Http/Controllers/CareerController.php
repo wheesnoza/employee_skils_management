@@ -35,6 +35,27 @@ class CareerController extends Controller
         return redirect(route('home'));
     }
 
+    public function edit(Career $career)
+    {
+        return view('careers.edit', compact('career'));
+    }
+
+    public function update(Career $career)
+    {
+        $data = request()->validate([
+            'experience' => ['required'],
+            'start_year' => ['required', 'integer'],
+            'start_month' => ['required', 'integer'],
+            'end_year' => ['required', 'integer'],
+            'end_month' => ['required', 'integer'],
+            'details' => []
+        ]);
+
+        $career->update($data);
+
+        return redirect(route('home'));
+    }
+
     public function destroy(Career $career)
     {
         $career->delete();
