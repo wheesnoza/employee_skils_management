@@ -21,7 +21,7 @@
 
                             <div class="form-group row">
                                 <div class="col-md-4">
-                                    <input id="start_year" name="start_year" type="text" class="form-control @error('start_year') is-invalid @enderror" value="{{ old('start_year', $career->start_year) }}">
+                                    {{Form::selectRange('start_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
                                     @error('start_year')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -29,27 +29,9 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-2">
-                                    <input id="start_month" name="start_month" type="text" class="form-control @error('start_month') is-invalid @enderror" value="{{ old('start_month', $career->start_month) }}">
-                                    @error('start_month')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
                                 <div class="col-md-4">
-                                    <input id="end_year" name="end_year" type="text" class="form-control @error('end_year') is-invalid @enderror" value="{{ old('end_year', $career->end_year) }}">
+                                    {{Form::selectRange('end_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
                                     @error('end_year')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-2">
-                                    <input id="end_month" name="end_month" type="text" class="form-control @error('end_month') is-invalid @enderror" value="{{ old('end_month', $career->end_month) }}">
-                                    @error('end_month')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
