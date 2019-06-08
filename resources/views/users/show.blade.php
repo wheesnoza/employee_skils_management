@@ -43,12 +43,6 @@
                                         {{ $career->details }}
                                     </p>
                                 </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-danger">削除</a>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary">編集</a>
-                                </div>
                             </div>
                         </li>
                     @empty

@@ -6,8 +6,8 @@ use App\Career;
 use App\Profile;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CareerTest extends TestCase
@@ -208,6 +208,34 @@ class CareerTest extends TestCase
                 'end_year' => 2020,
             ])->assertRedirect(route('career.new'))
             ->assertSessionHasErrors(['end_month']);
+
+        $this->equalTo(0, Career::count());
+    }
+
+    /**
+     * end_monthは必須
+     *
+     * @test
+     */
+    public function user_can_delete_career()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+        /** ユーザー */
+        $user = factory(User::class)->create();
+        factory(Profile::class)->create([
+            'user_id' => $user->id
+        ]);
+        /** キャリア */
+        $career = factory(Career::class)->create();
+
+        $this->actingAs($user);
+        $this->assertTrue(Auth::check());
+
+        $this->from(route('home'))
+            ->delete(route('career.destroy', $career))
+            ->assertRedirect(route('home'));
 
         $this->equalTo(0, Career::count());
     }

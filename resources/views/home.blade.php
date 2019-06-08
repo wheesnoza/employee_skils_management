@@ -24,6 +24,11 @@
                             <img src="{{ asset("storage/images/$skill->image")  }}" class="card-img-top" alt="...">
                             <div class="card-footer text-center">
                                 <h3>{{ $skill->name }}</h3>
+                                <form action="{{ route('skill.destroy', $skill) }}" method="POST">
+                                    {{ method_field('DELETE')  }}
+                                    {{ csrf_field() }}
+                                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -49,10 +54,14 @@
                                     </p>
                                 </div>
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-danger">削除</a>
+                                    <form action="{{ route('career.destroy', $career) }}" method="POST">
+                                        {{ method_field('DELETE')  }}
+                                        {{ csrf_field() }}
+                                        <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                                    </form>
                                 </div>
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary">編集</a>
+                                    <a href="#" class="btn btn-primary btn-sm">編集</a>
                                 </div>
                             </div>
                         </li>

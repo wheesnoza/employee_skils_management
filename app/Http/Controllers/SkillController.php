@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Skill;
 use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
@@ -14,5 +15,13 @@ class SkillController extends Controller
         $user = Auth::user();
         $user->skills()->attach($data['skill']);
         return redirect('/');
+    }
+
+    public function destroy(Skill $skill)
+    {
+        $user = Auth::user();
+        $user->skills()->detach($skill);
+
+        return redirect(route('home'));
     }
 }

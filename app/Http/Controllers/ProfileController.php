@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Career;
 use Illuminate\Support\Facades\Auth;
 use Image;
 
