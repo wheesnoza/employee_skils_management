@@ -8,9 +8,21 @@
                     <div class="card-body">
                         <img src="@if($user->profile->avatar) /images/{{ $user->profile->avatar }} @else {{ asset('storage/images/no_avatar.png') }} @endif" alt="..." class="img-thumbnail mb-3">
                         <h3 style="color: #636b6f;">{{ $user->profile->first_name }}　{{ $user->profile->last_name }}</h3>
-                        <p>{{ $user->profile->address }}</p>
-                        <p>{{ $user->profile->birth_year }}/{{ $user->profile->birth_month }}/{{ $user->profile->birth_day }}</p>
-                        <p>{{ $user->email }}</p>
+                        <hr>
+                        <p>
+                            <i class="fas fa-map-marker-alt fa-lg text-secondary"></i>
+                            {{ $user->profile->address }}
+                        </p>
+                        <hr>
+                        <p>
+                            <i class="fas fa-calendar-alt fa-lg text-secondary"></i>
+                            {{ $user->profile->birth_year }}年{{ $user->profile->birth_month }}月{{ $user->profile->birth_day }}日
+                        </p>
+                        <hr>
+                        <p>
+                            <i class="fas fa-envelope fa-lg text-secondary"></i>
+                            {{ $user->email }}
+                        </p>
                     </div>
                 </div>
                 <div class="row">

@@ -10,8 +10,6 @@ class Career extends Model
         'experience',
         'start_year',
         'end_year',
-        'start_month',
-        'end_month',
         'details',
     ];
 

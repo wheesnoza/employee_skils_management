@@ -18,8 +18,6 @@ class CreateCareersTable extends Migration
             $table->string('experience');
             $table->integer('start_year');
             $table->integer('end_year');
-            $table->integer('start_month');
-            $table->integer('end_month');
             $table->text('details')->nullable();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')

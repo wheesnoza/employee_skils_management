@@ -10,10 +10,8 @@ use Faker\Generator as Faker;
 $factory->define(Career::class, function (Faker $faker) {
     return [
         'experience' => $faker->text(13),
-        'start_year' => $faker->year(),
-        'end_year' => $faker->year(),
-        'start_month' => $faker->month(),
-        'end_month' => $faker->month(),
+        'start_year' => $faker->year('1993'),
+        'end_year' => $faker->year('now'),
         'details' => $faker->realText(),
         'user_id' => $faker->numberBetween(1, User::count()),
     ];

@@ -182,32 +182,6 @@ class CareerTest extends TestCase
     }
 
     /**
-     * start_monthは必須
-     *
-     * @test
-     */
-    public function start_month_is_required_when_add_new_career()
-    {
-        $user = factory(User::class)->create();
-        factory(Profile::class)->create([
-            'user_id' => $user->id
-        ]);
-        $this->actingAs($user);
-        $this->assertTrue(Auth::check());
-
-        $this->from(route('career.new'))
-            ->post(route('career.store'), [
-                'experience' => '東海大学',
-                'start_year' => 2016,
-                'end_year' => 2020,
-                'end_month' => 3,
-            ])->assertRedirect(route('career.new'))
-            ->assertSessionHasErrors(['start_month']);
-
-        $this->equalTo(0, Career::count());
-    }
-
-    /**
      * end_yearは必須
      *
      * @test
@@ -229,32 +203,6 @@ class CareerTest extends TestCase
                 'end_month' => 3,
             ])->assertRedirect(route('career.new'))
             ->assertSessionHasErrors(['end_year']);
-
-        $this->equalTo(0, Career::count());
-    }
-
-    /**
-     * end_monthは必須
-     *
-     * @test
-     */
-    public function end_month_is_required_when_add_new_career()
-    {
-        $user = factory(User::class)->create();
-        factory(Profile::class)->create([
-            'user_id' => $user->id
-        ]);
-        $this->actingAs($user);
-        $this->assertTrue(Auth::check());
-
-        $this->from(route('career.new'))
-            ->post(route('career.store'), [
-                'experience' => '東海大学',
-                'start_year' => 2016,
-                'start_month' => 4,
-                'end_year' => 2020,
-            ])->assertRedirect(route('career.new'))
-            ->assertSessionHasErrors(['end_month']);
 
         $this->equalTo(0, Career::count());
     }

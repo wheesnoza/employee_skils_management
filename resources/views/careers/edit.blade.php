@@ -13,15 +13,23 @@
                             @csrf
 
                             <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="experience" class="col-md-4 col-form-label text-md-right">タイトル</label>
-                                    <input id="experience" name="experience" type="text" class="form-control" placeholder="学校やプロジェクトの名前" value="{{ old('experience', $career->experience) }}">
+                                <label for="experience" class="col-md-4 col-form-label text-md-right">タイトル</label>
+                                <div class="col-md-8">
+                                    <input id="experience" name="experience" type="text" class="form-control col-md-8 @error('experience') is-invalid @enderror" placeholder="学校やプロジェクトの名前" value="{{ old('experience', $career->experience) }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-4">
-                                    <input id="start_year" name="start_year" type="text" class="form-control @error('start_year') is-invalid @enderror" value="{{ old('start_year', $career->start_year) }}">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">詳細内容</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control col-md-8" name="details" rows="3">{{ old('details', $career->details) }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="experience" class="col-md-4 col-form-label text-md-right">年から年まで</label>
+                                <div class="col-md-2">
+                                    {{Form::selectRange('start_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
                                     @error('start_year')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -30,40 +38,8 @@
                                 </div>
 
                                 <div class="col-md-2">
-                                    <input id="start_month" name="start_month" type="text" class="form-control @error('start_month') is-invalid @enderror" value="{{ old('start_month', $career->start_month) }}">
-                                    @error('start_month')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-4">
-                                    <input id="end_year" name="end_year" type="text" class="form-control @error('end_year') is-invalid @enderror" value="{{ old('end_year', $career->end_year) }}">
+                                    {{Form::selectRange('end_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
                                     @error('end_year')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-2">
-                                    <input id="end_month" name="end_month" type="text" class="form-control @error('end_month') is-invalid @enderror" value="{{ old('end_month', $career->end_month) }}">
-                                    @error('end_month')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">詳細内容</label>
-
-                                <div class="col-md-12">
-                                    <textarea class="form-control @error('details') is-invalid @enderror" name="details" rows="3">{{ old('details', $career->details) }}</textarea>
-
-                                    @error('details')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
