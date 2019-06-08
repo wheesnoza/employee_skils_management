@@ -53,14 +53,13 @@ class SkillTest extends TestCase
      */
     public function user_can_delete_skill()
     {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
         /** スキル */
         DB::table('skills')->insert([
             'name' => 'Java',
             'image' => 'Java.png'
-        ]);
-        DB::table('skills')->insert([
-            'name' => 'Ruby',
-            'image' => 'Ruby.png'
         ]);
 
         /** ユーザ */
@@ -72,17 +71,12 @@ class SkillTest extends TestCase
         $this->assertTrue(Auth::check());
 
         /** ユーザスキル */
-        DB::table('skill_user')->insert([
+        $skill = DB::table('skill_user')->insert([
             'skill_id' => 1,
             'user_id' => $user->id,
         ]);
-        DB::table('skill_user')->insert([
-            'skill_id' => 2,
-            'user_id' => $user->id,
-        ]);
 
-        $this->from(route('home'))
-            ->delete(route('skill.destroy', ['skill' => 1]))
+        $this->delete(route('skill.destroy', $skill))
             ->assertRedirect(route('home'));
         $this->assertDatabaseMissing('skill_user', [
             'skill_id' => 1,

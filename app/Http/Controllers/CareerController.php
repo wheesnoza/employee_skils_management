@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Career;
 use Illuminate\Support\Facades\Auth;
 
 class CareerController extends Controller
@@ -32,6 +32,12 @@ class CareerController extends Controller
             'details' => (array_key_exists('details', $data)) ? $data['details'] : null,
         ]);
 
+        return redirect(route('home'));
+    }
+
+    public function destroy(Career $career)
+    {
+        $career->delete();
         return redirect(route('home'));
     }
 }

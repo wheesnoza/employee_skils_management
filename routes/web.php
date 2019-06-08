@@ -42,5 +42,6 @@ Route::get('/career/new', 'CareerController@new')
 Route::post('/career/store', 'CareerController@store')
     ->name('career.store');
 
-Route::delete('/career/destroy', 'CareerController@desroy')
+Route::delete('/career/{career}/destroy', 'CareerController@destroy')
+    ->where('career', '[0-9]+')
     ->name('career.destroy');
