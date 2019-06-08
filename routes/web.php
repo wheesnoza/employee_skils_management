@@ -19,7 +19,7 @@ Route::get('/', 'HomeController@index')
 Route::get('/profile/edit', 'ProfileController@edit')
     ->name('profile.edit');
 
-Route::put('/profile', 'ProfileController@update')
+Route::put('/profile/update', 'ProfileController@update')
     ->name('profile.update');
 
 Route::get('/users', 'UserController@index')
@@ -29,11 +29,18 @@ Route::get('/users/{user}', 'UserController@show')
     ->where('user', '[0-9]+')
     ->name('users.show');
 
-Route::post('/skill', 'SkillController@store')
+Route::post('/skill/store', 'SkillController@store')
     ->name('skill.store');
+
+Route::delete('/skill/{skill}/destroy', 'SkillController@destroy')
+    ->where('skill', '[0-9]+')
+    ->name('skill.destroy');
 
 Route::get('/career/new', 'CareerController@new')
     ->name('career.new');
 
-Route::post('/career', 'CareerController@store')
+Route::post('/career/store', 'CareerController@store')
     ->name('career.store');
+
+Route::delete('/career/destroy', 'CareerController@desroy')
+    ->name('career.destroy');

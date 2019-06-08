@@ -45,4 +45,48 @@ class SkillTest extends TestCase
             'user_id' => $user->id,
         ]);
     }
+
+    /**
+     * スキルを正常に削除できる
+     *
+     * @test
+     */
+    public function user_can_delete_skill()
+    {
+        /** スキル */
+        DB::table('skills')->insert([
+            'name' => 'Java',
+            'image' => 'Java.png'
+        ]);
+        DB::table('skills')->insert([
+            'name' => 'Ruby',
+            'image' => 'Ruby.png'
+        ]);
+
+        /** ユーザ */
+        $user = factory(User::class)->create();
+        factory(Profile::class)->create([
+            'user_id' => $user->id
+        ]);
+        $this->actingAs($user);
+        $this->assertTrue(Auth::check());
+
+        /** ユーザスキル */
+        DB::table('skill_user')->insert([
+            'skill_id' => 1,
+            'user_id' => $user->id,
+        ]);
+        DB::table('skill_user')->insert([
+            'skill_id' => 2,
+            'user_id' => $user->id,
+        ]);
+
+        $this->from(route('home'))
+            ->delete(route('skill.destroy', ['skill' => 1]))
+            ->assertRedirect(route('home'));
+        $this->assertDatabaseMissing('skill_user', [
+            'skill_id' => 1,
+            'user_id' => $user->id,
+        ]);
+    }
 }

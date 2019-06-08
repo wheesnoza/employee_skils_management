@@ -24,6 +24,11 @@
                             <img src="{{ asset("storage/images/$skill->image")  }}" class="card-img-top" alt="...">
                             <div class="card-footer text-center">
                                 <h3>{{ $skill->name }}</h3>
+                                <form action="{{ route('skill.destroy', $skill) }}" method="POST">
+                                    {{ method_field('DELETE')  }}
+                                    {{ csrf_field() }}
+                                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                                </form>
                             </div>
                         </div>
                     </div>
