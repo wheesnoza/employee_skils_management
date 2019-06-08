@@ -14,21 +14,20 @@
                             <div class="form-group row">
                                 <label for="experience" class="col-md-4 col-form-label text-md-right">タイトル</label>
                                 <div class="col-md-8">
-                                    <input id="experience" name="experience" type="text" class="form-control col-md-8" placeholder="学校やプロジェクトの名前">
+                                    <input id="experience" name="experience" type="text" class="form-control col-md-8 @error('experience') is-invalid @enderror" placeholder="学校やプロジェクトの名前">
+                                    @error('experience')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">詳細内容</label>
+                                <label for="details" class="col-md-4 col-form-label text-md-right">詳細内容</label>
 
                                 <div class="col-md-8">
-                                    <textarea class="form-control col-md-8 @error('details') is-invalid @enderror" name="details" rows="3">{{ old('details') }}</textarea>
-
-                                    @error('details')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <textarea class="form-control col-md-8" name="details" rows="3">{{ old('details') }}</textarea>
                                 </div>
                             </div>
 
@@ -37,17 +36,17 @@
                                 <div class="col-md-2">
                                     {{Form::selectRange('start_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
                                     @error('start_year')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="col-md-2">
                                     {{Form::selectRange('end_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
                                     @error('end_year')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
