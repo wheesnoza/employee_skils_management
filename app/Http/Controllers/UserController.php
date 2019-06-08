@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -15,7 +14,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all()->whereNotIn('id', Auth::user()->id);
+        $users = User::where('id', '!=', Auth::user()->id)->paginate(10);
 
         return view('users.index', compact('users'));
     }
