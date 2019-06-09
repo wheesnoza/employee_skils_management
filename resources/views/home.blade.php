@@ -5,44 +5,14 @@
     <div class="row">
         <div class="col-md-4">
             <a href="{{ route('profile.edit') }}" class="btn btn-info btn-lg text-white ml-2 mb-3 shadow">プロフィール編集</a>
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    <img src="@if($user->profile->avatar) /images/{{ $user->profile->avatar }} @else {{ asset('storage/images/no_avatar.png') }} @endif" alt="..." class="img-thumbnail mb-3">
-                    <h3 style="color: #636b6f;">{{ $user->profile->first_name }}　{{ $user->profile->last_name }}</h3>
-                    <hr>
-                    <p>
-                        <i class="fas fa-map-marker-alt fa-lg text-secondary"></i>
-                        {{ $user->profile->address }}
-                    </p>
-                    <hr>
-                    <p>
-                        <i class="fas fa-calendar-alt fa-lg text-secondary"></i>
-                        {{ $user->profile->birth_year }}年{{ $user->profile->birth_month }}月{{ $user->profile->birth_day }}日
-                    </p>
-                    <hr>
-                    <p>
-                        <i class="fas fa-envelope fa-lg text-secondary"></i>
-                        {{ $user->email }}
-                    </p>
-                </div>
-            </div>
+            @include('partials.profile', ['user' => $user])
             <button type="button" class="btn btn-info btn-lg text-white mb-3 shadow" data-toggle="modal" data-target="#exampleModalCenter">
                 スキルを追加する
             </button>
             <div class="row">
                 @forelse($user->skills as $skill)
-                    <div class="col-md-6">
-                        <div class="card shadow mb-3">
-                            <img src="{{ asset("storage/images/$skill->image")  }}" class="card-img-top" alt="...">
-                            <div class="card-footer text-center">
-                                <h3>{{ $skill->name }}</h3>
-                                <form action="{{ route('skill.destroy', $skill) }}" method="POST">
-                                    {{ method_field('DELETE')  }}
-                                    {{ csrf_field() }}
-                                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-md-5">
+                        @include('partials.skills', ['skill' => $skill])
                     </div>
                 @empty
                     No skills
@@ -51,36 +21,15 @@
         </div>
         <div class="col-md-8 text-right">
             <a href="{{ route('career.new') }}" class="btn btn-info btn-lg text-white ml-2 mb-3 shadow">経歴を追加する</a>
+            <div class="overflow-auto" style="max-height: 800px;">
                 <ul class="timeline">
-                    @forelse($careers as $career)
-                        <li>
-                            <div class="timeline-badge info"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4 class="timeline-title">{{ $career->experience }}</h4>
-                                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{ "{$career->start_year}年{$career->start_month}月-{$career->end_year}年{$career->end_month}月" }}</small></p>
-                                </div>
-                                <div class="timeline-body mb-3">
-                                    <p>
-                                        {{ $career->details }}
-                                    </p>
-                                </div>
-                                <div class="btn-group">
-                                    <form action="{{ route('career.destroy', $career) }}" method="POST">
-                                        {{ method_field('DELETE')  }}
-                                        {{ csrf_field() }}
-                                        <input type="submit" class="btn btn-danger btn-sm" value="削除">
-                                    </form>
-                                </div>
-                                <div class="btn-group">
-                                    <a href="{{ route('career.edit', $career) }}" class="btn btn-primary btn-sm">編集</a>
-                                </div>
-                            </div>
-                        </li>
+                    @forelse($user->careers as $career)
+                        @include('partials.time-line', ['career' => $career])
                     @empty
                         No careers
                     @endforelse
                 </ul>
+            </div>
         </div>
     </div>
 </div>
