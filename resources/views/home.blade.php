@@ -15,7 +15,9 @@
                         @include('partials.skills', ['skill' => $skill])
                     </div>
                 @empty
-                    No skills
+                    <div class="ml-3 alert alert-light" role="alert">
+                        まだ登録されたスキルがありません。
+                    </div>
                 @endforelse
             </div>
         </div>
@@ -26,7 +28,9 @@
                     @forelse($user->careers as $career)
                         @include('partials.time-line', ['career' => $career])
                     @empty
-                        No careers
+                        <div class="mr-5 float-right alert alert-light" style="width: 18rem" role="alert">
+                            まだ登録された経歴がありません。
+                        </div>
                     @endforelse
                 </ul>
             </div>

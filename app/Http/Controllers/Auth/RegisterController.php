@@ -53,6 +53,11 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'first_name' => ['required'],
             'last_name' => ['required'],
+        ], [
+            'email.required' => 'この項目は必須です。',
+            'password.required' => 'この項目は必須です。',
+            'first_name.required' => 'この項目は必須です。',
+            'last_name.required' => 'この項目は必須です。',
         ]);
     }
 

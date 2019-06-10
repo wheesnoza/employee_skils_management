@@ -30,6 +30,13 @@ class ProfileController extends Controller
             'birth_month' => 'required',
             'birth_day' => 'required',
             'avatar' => ['file', 'image', 'max:4000'],
+        ], [
+            'first_name.required' => 'この項目は必須です',
+            'last_name.required' => 'この項目は必須です',
+            'address.required' => 'この項目は必須です',
+            'birth_year.required' => 'この項目は必須です',
+            'birth_month.required' => 'この項目は必須です',
+            'birth_day.required' => 'この項目は必須です',
         ]);
 
         $fileHashName = $user->profile->avatar;
