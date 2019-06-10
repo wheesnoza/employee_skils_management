@@ -33,16 +33,22 @@
 
                             <div class="form-group row">
                                 <label for="experience" class="col-md-4 col-form-label text-md-right">年から年まで</label>
-                                <div class="col-md-2">
-                                    {{Form::selectRange('start_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
+                                <div class="col-md-3">
+                                    {{Form::selectRange('start_year', 1970, now()->year, '', [
+                                        'class' => $errors->has('start_year') ? 'form-control is-invalid' : 'form-control',
+                                        'placeholder' => '年']
+                                    )}}
                                     @error('start_year')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-2">
-                                    {{Form::selectRange('end_year', 1970, 2018, '', ['class' => 'form-control','placeholder' => '年'])}}
+                                <div class="col-md-3">
+                                    {{Form::selectRange('end_year', 1970, now()->year, '', [
+                                        'class' => $errors->has('end_year') ? 'form-control is-invalid' : 'form-control',
+                                        'placeholder' => '年']
+                                    )}}
                                     @error('end_year')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -54,7 +60,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        追加
+                                        追加する
                                     </button>
                                 </div>
                             </div>
