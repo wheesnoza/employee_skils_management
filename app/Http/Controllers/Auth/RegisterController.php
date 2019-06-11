@@ -53,11 +53,19 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'first_name' => ['required'],
             'last_name' => ['required'],
+            'address' => ['required'],
+            'birth_year' => ['required'],
+            'birth_month' => ['required'],
+            'birth_day' => ['required'],
         ], [
             'email.required' => 'この項目は必須です。',
             'password.required' => 'この項目は必須です。',
             'first_name.required' => 'この項目は必須です。',
             'last_name.required' => 'この項目は必須です。',
+            'address.required' => 'この項目は必須です。',
+            'birth_year.required' => 'この項目は必須です。',
+            'birth_month.required' => 'この項目は必須です。',
+            'birth_day.required' => 'この項目は必須です。',
         ]);
     }
 
@@ -76,6 +84,10 @@ class RegisterController extends Controller
         $user->profile()->create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'address' => $data['address'],
+            'birth_year' => $data['birth_year'],
+            'birth_month' => $data['birth_month'],
+            'birth_day' => $data['birth_day'],
         ]);
         return $user;
     }

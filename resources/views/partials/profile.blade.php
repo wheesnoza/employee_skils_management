@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="text-center">
             <img src="@if($user->profile->avatar) /images/{{ $user->profile->avatar }} @else {{ asset('storage/images/no_avatar.png') }} @endif" alt="..." style="width: 200px;" class="img-thumbnail mb-3">
-            <h3 style="color: #636b6f;">{{ $user->profile->first_name }}{{ $user->profile->last_name }}</h3>
+            <h3 style="color: #636b6f;">{{ $user->profile->first_name }}　{{ $user->profile->last_name }}</h3>
         </div>
         <hr>
         <p>

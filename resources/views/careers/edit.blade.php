@@ -32,12 +32,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="experience" class="col-md-4 col-form-label text-md-right">年から年まで</label>
+                                <label class="col-md-4 col-form-label text-md-right">年から年まで</label>
                                 <div class="col-md-3">
-                                    {{Form::selectRange('start_year', 1970, 2018, '', [
-                                        'class' => $errors->has('start_year') ? 'form-control is-invalid' : 'form-control',
-                                        'placeholder' => '年']
-                                    )}}
+                                    <input id="start_year" name="start_year" type="number" class="form-control col-md-8 @error('start_year') is-invalid @enderror" placeholder="2018" value="{{ old('start_year', $career->start_year) }}">
                                     @error('start_year')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -46,10 +43,7 @@
                                 </div>
 
                                 <div class="col-md-3">
-                                    {{Form::selectRange('end_year', 1970, 2018, '', [
-                                        'class' => $errors->has('start_year') ? 'form-control is-invalid' : 'form-control',
-                                        'placeholder' => '年']
-                                    )}}
+                                    <input id="end_year" name="end_year" type="number" class="form-control col-md-8 @error('end_year') is-invalid @enderror" placeholder="2019" value="{{ old('end_year', $career->end_year) }}">
                                     @error('end_year')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
